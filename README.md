@@ -1,5 +1,9 @@
 # Stubhub clone
 
+## Local Development
+
+Run `skaffold dev`
+
 ## (Optional) Local development with GCloud
 
 - Create a k8s cluster inside Kubernetes Engine
@@ -31,7 +35,7 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: "src/**/*.ts"
+          - src: 'src/**/*.ts'
             dest: .
 ```
 
