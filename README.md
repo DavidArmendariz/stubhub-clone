@@ -2,7 +2,33 @@
 
 ## Local Development
 
-Run `minikube start` and then `skaffold dev`.
+Make sure to have `minikube` installed.
+
+- Run `minikube start`
+- Follow the instructions to install `ingress-nginx`: <https://kubernetes.github.io/ingress-nginx/deploy/#minikube>
+- Run `minikube ip` and take note of it
+- Modify `/etc/hosts` with the following:
+
+```txt
+<your_minikube_ip> ticketing.dev
+```
+
+`ticketing.dev` is arbitrary, you can put whatever you want.
+
+- Run `skaffold dev`
+
+## Ingress nginx namespace issue
+
+In minikube the ingress addon is installed in the namespace kube-system instead of ingress-nginx.
+We have to expose a deployment of `ingress-nginx-controller` like this:
+
+```zsh
+kubectl expose deployment ingress-nginx-controller --target-port=80 --type=NodePort -n kube-system
+```
+
+You can verify that the service got created with: `kubectl get services -n kube-system`
+
+Now we can make use of this URL to communicate with ingress-nginx inside of our NextJS app: `http://ingress-nginx-controller.kube-system.svc.cluster.local/endpoint`
 
 ## (Optional) Local development with GCloud
 
