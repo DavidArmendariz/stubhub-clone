@@ -2,7 +2,7 @@
 
 ## Local Development
 
-Run `skaffold dev`
+Run `minikube start` and then `skaffold dev`.
 
 ## (Optional) Local development with GCloud
 
