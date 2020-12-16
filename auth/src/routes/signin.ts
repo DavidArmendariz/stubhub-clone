@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { validateRequest } from '../middlewares/validate-request';
+import { validateRequest, BadRequestError } from '@daaptickets/common';
 import { User } from '../models/user';
-import { BadRequestError } from '../errors/bad-request-error';
 import { PasswordManager } from '../services/password-manager';
 import { generateJWT } from './utils/generate-jwt';
 
@@ -12,10 +11,7 @@ router.post(
   '/api/users/signin',
   [
     body('email').isEmail().withMessage('Email must be valid'),
-    body('password')
-      .trim()
-      .notEmpty()
-      .withMessage('You must supply a password'),
+    body('password').trim().notEmpty().withMessage('You must supply a password'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -24,10 +20,7 @@ router.post(
     if (!existingUser) {
       throw new BadRequestError('Invalid credentials');
     }
-    const passwordsMatch = await PasswordManager.compare(
-      existingUser.password,
-      password
-    );
+    const passwordsMatch = await PasswordManager.compare(existingUser.password, password);
     if (!passwordsMatch) {
       throw new BadRequestError('Invalid credentials');
     }
