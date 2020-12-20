@@ -279,9 +279,9 @@
     minimist "^1.2.0"
 
 "@daaptickets/common@^1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@daaptickets/common/-/common-1.0.10.tgz#255622b2c73761615897b26f0b155b8560517ebb"
-  integrity sha512-wUV70lBJ9x4EuyG76qhq7sqUe4SZpvJJp3oGjvuaiXZuhdhaschyD2Tv/khx0XoUjfWSgvU9L6xCAWLxoI4T3A==
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@daaptickets/common/-/common-1.0.11.tgz#0fc828b4b9d23c0f056646facafd12e33e37bdbd"
+  integrity sha512-JGVv5ZBpftB97KxSxt7REEuFJQzd57J4ieH40PmJhsLOv0+OQxFFiMlbRY8IbAcoqV/edHrZG/wrTgpuqrzEJA==
   dependencies:
     "@types/cookie-session" "^2.0.42"
     "@types/express" "^4.17.9"
